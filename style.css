@@ -52,3 +52,15 @@ button {
     padding: 10px;
     font-size: 1em;
 }
+
+.x-mark {
+    background-color: #ffcccb;
+    /* Light red color for X */
+    color: red;
+}
+
+.o-mark {
+    background-color: #ccffcc;
+    /* Light green color for O */
+    color: green;
+}

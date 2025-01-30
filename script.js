@@ -43,14 +43,15 @@ function startGame() {
     function handleClick(e) {
         const cell = e.target; // Get the cell that was clicked
         const row = cell.dataset.row; // Get the row of the cell
-        const col = cell.data.col;// Get the col of the cell
+        const col = cell.dataset.col;// Get the col of the cell
         if (boardState[row][col] !== '') return;// If the cell is not empty, return
         boardState[row][col] = currentPlayer;// Set the cell to the current player
         cell.textConent = currentPlayer;// Set the text content of the cell to the current player
+        cell.classList.add(currentPlayer === 'X' ? 'x-mark' : 'o-mark');// Add the x-mark or o-mark class to the cell
         if (checkWin()) {
             endGame(false);
         }// Check if the current player has won
-        else if (checkDraw()) {
+        else if (isDraw()) {
             endGame(true);//
         }// Check if the game is a draw
         else {
