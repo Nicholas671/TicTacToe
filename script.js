@@ -78,5 +78,12 @@ function isDraw() {
 
 function checkWin() {
     const lines = []// Create an empty array to store the lines
-    for (let i = 0; i < boardSize; i++) 
+    for (let i = 0; i < boardSize; i++) {
+        lines.push(boardState[i]);// Add the rows to the lines array
+        lines.push(boardState.map(row => row[i]));// Add the columns to the lines array
     }
+    lines.push(boardState.map((row, idx) => row[idx]));// Add the diagonal to the lines array
+    lines.push(boardState.map((row, idx) => row[boardSize - idx - 1]));// Add the anti-diagonal to the lines array
+    return lines.some(line => line.every(cell => cell === currentPlayer));// Check if any of the lines contain all the same player
+
+}
