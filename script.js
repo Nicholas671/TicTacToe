@@ -37,16 +37,28 @@ function startGame() {
             boardElement.appendChild(cell);// Append the cell to the board
             boardElement.appendChild(cell);// Append the cell to the board
         }
-    }
-    winningMessageElement.classList.remove('show');// Hide the winning message
-}// Start the game
+        winningMessageElement.classList.remove('show');// Hide the winning message
+    }// Start the game
 
-function handleClick(e) {
-    const cell = e.target; // Get the cell that was clicked
-    const row = cell.dataset.row; // Get the row of the cell
-    const col = cell.data.col;// Get the col of the cell
-    if (boardState[row][col] !== '') return;// If the cell is not empty, return
-    boardState[row][col] = currentPlayer;// Set the cell to the current player
+    function handleClick(e) {
+        const cell = e.target; // Get the cell that was clicked
+        const row = cell.dataset.row; // Get the row of the cell
+        const col = cell.data.col;// Get the col of the cell
+        if (boardState[row][col] !== '') return;// If the cell is not empty, return
+        boardState[row][col] = currentPlayer;// Set the cell to the current player
+        cell.textConent = currentPlayer;// Set the text content of the cell to the current player
+        if (checkWin()) {
+            endGame(false);
+        }// Check if the current player has won
+        else if (checkDraw()) {
+            endGame(true);//
+        }// Check if the game is a draw
+        else {
+            swapTurns();// Swap turns
+        }
+    }// Handle the click event
+}
 
-
+function swapTurns() {
+    currentPlayer = currentPlayer === 'X' ? 'O' : 'X';// Swap the current player
 }
