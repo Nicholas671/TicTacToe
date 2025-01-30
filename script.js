@@ -62,3 +62,21 @@ function startGame() {
 function swapTurns() {
     currentPlayer = currentPlayer === 'X' ? 'O' : 'X';// Swap the current player
 }
+
+function endGame(draw) {
+    if (draw) {
+        winningMessageTextElement.textContent = 'Draw!';// Set the winning message text to draw
+    } else {
+        winningMessageTextElement.textContent = `${currentPlayer === 'X' ? player1Name : player2Name} Wins!`;// Set the winning message text to the current player
+    }
+    winningMessageElement.classList.add('show');// Show the winning message
+}
+
+function isDraw() {
+    return boardState.flat().every(cell => cell !== '');
+}// Check if the game is a draw
+
+function checkWin() {
+    const lines = []// Create an empty array to store the lines
+    for (let i = 0; i < boardSize; i++) 
+    }
